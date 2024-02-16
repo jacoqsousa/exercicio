@@ -1,0 +1,41 @@
+/*Configurando fonte; tamanho e margem do corpo da página*/
+body{
+    font-family: "Arial";
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+/*Estlizando a faixa do cabeçalho*/
+header{
+    background-color: rgb(61, 35, 45);
+    padding: 10px;
+}
+.logo_caixa{
+    margin: auto;
+}
+/*Ajustar tamanho e margem da logo*/
+.logo{
+    width: 8%;
+    margin: 0 0 0 40px;
+}
+/*Estilizando como será disposto o menu*/
+.title{
+    font-size: 200%;
+    font-family: arial;
+    font: bold;
+    margin: 20 0 20 30;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 5em 0 0 5em;
+  }
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+.tabela{
+    background-color: lightgrey;
+}
