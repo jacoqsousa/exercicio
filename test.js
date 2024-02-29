@@ -9,9 +9,24 @@ for (var count=0; count < clientes.length; count++){
     //Captura o valor unitario do produto
     var unitario = clientes[count].querySelector(".info-valor").textContent;
 
-    //Calcula o valor total
-    //clientes[count].querySelector(".info-total").textContent = qtde * unitario;
-    clientes[count].querySelector(".info-total").textContent = calculaTotal(qtde,unitario);
+    //Valida a quantidade
+    if(qtde<1 || isNaN(qtde)){
+        //Quantidade NOK, avisa o usuario
+        clientes[count].querySelector(".info-qtd").textContent = "QTDE INVALIDA!";
+        clientes[count].querySelector(".info-qtd").style.color='red';
+    }else{
+        //Quantidade OK, prossegue
+        //Calcula o valor total
+        clientes[count].querySelector(".info-total").textContent = calculaTotal(qtde,unitario);  
+    }
+
+    if(unitario<1 || isNaN(unitario)){
+        clientes[count].querySelector(".info-valor").textContent = "FOR FREE";
+        clientes[count].style.background='red';
+    }else{
+        
+    }
+    
 }
 
 //Função para calcular o valor total
