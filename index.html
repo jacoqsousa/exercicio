@@ -1,4 +1,5 @@
 <hmtl>
+    <meta charset="UTF-8">    
     <head>
         <link href="style.css" rel="stylesheet">
         <link href="market.ico" rel="shortcut icon">
@@ -12,35 +13,68 @@
             </div>
         </header>
         <h2 class="title">Lista de Compras</h2>
-        <table>
-            <tr>
-                <th class="nome">Nome</th>
-                <th class="produto">Produto</th>
-                <th class="quantidade">Quantidade</th>
-                <th class="valor">Valor Unitario</th>
-                <th class="total">Total</th>
-            </tr>
-            <tr class="cliente">
-                <td class="info-nome">Jhonatan</td>
-                <td class="info-produto">Video-game PS4</td>
-                <td class="info-qtd">10</td>
-                <td class="info-valor">1000</td>
-                <td class="info-total">-</td>
-            </tr>
-            <tr class="cliente">
-                <td class="info-nome">Bhartolomeu</td>
-                <td class="info-produto">Computador</td>
-                <td class="info-qtd">10</td>
-                <td class="info-valor">0</td>
-                <td class="info-total">-</td>
-            </tr>
-            <tr class="cliente">
-                <td class="info-nome">Danilo</td>
-                <td class="info-produto">Copo Americano</td>
-                <td class="info-qtd">10</td>
-                <td class="info-valor">10</td>
-                <td class="info-total">-</td>
-            </tr>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th class="nome">Nome</th>
+                    <th class="produto">Produto</th>
+                    <th class="quantidade">Quantidade</th>
+                    <th class="valor">Valor Unitario</th>
+                    <th class="total">Total</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr class="cliente">
+                    <td class="info-nome">Jhonatan</td>
+                    <td class="info-produto">Video-game PS4</td>
+                    <td class="info-qtd">10</td>
+                    <td class="info-valor">1000</td>
+                    <td class="info-total">-</td>
+                </tr>
+                <tr class="cliente">
+                    <td class="info-nome">Bhartolomeu</td>
+                    <td class="info-produto">Computador</td>
+                    <td class="info-qtd">20</td>
+                    <td class="info-valor">100</td>
+                    <td class="info-total">-</td>
+                </tr>
+                <tr class="cliente">
+                    <td class="info-nome">Danilo</td>
+                    <td class="info-produto">Copo Americano</td>
+                    <td class="info-qtd">10</td>
+                    <td class="info-valor">10</td>
+                    <td class="info-total">-</td>
+                </tr>   
+            </tbody>
+        </table>
+        <h2 class="encomenda">Adicionar nova encomenda</h2>
+        <hr>
+        <div class="tbl">
+            <form name="FmrContato" method="get" target="_blank">
+                    <div class="grupo">
+                        <label for="nomecliente">* Nome:</label>
+                        <input type="text" id="nomecliente" name="" class="input-padrao" required placeholder="Digite o nome do(a) cliente">
+                    </div>
+                    <div class="grupo">
+                        <label for="quanti">* Qtde:</label>
+                        <input type="text" id="quanti" name="" class="input-padrao" required placeholder="Digite a quantidade encomendada">
+                    </div>
+                    <div class="grupo">
+                        <label for="prodct">* Produto:</label>  
+                        <select class="input-padrao" id="produtos">
+                            <option>Selecione</option>
+                            <option value="Video-game PS4">Video-game PS4</option>
+                            <option value="Computador">Computador</option>
+                            <option value="Copo Americano">Copo Americano</option>
+                        </select>
+                    </div>
+                    <div class="grupo">
+                        <label for="Vunitario">* R$ Unitário:</label>
+                        <input type="text" id="Vunitario" name="" class="input-padrao" required placeholder="Digite o valor unitário do produto">
+                    </div>
+            </form>
+        </div>    
+        <input type="submit" value="Adicionar" class="adicionar-encomenda"> 
         <script src="test.js"></script>
     </body>
     <footer>
