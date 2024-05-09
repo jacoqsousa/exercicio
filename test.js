@@ -147,9 +147,19 @@ botaoAdicionar.addEventListener("click", function(event){
 
     nome = document.getElementById("nomecliente").value
     produto = document.getElementById("produtos").value
-    quantidade = document.getElementById("quanti").value
+    quantidade = parseFloat(document.getElementById("quanti").value)
     valor = parseFloat(document.getElementById("Vunitario").value)
+
+    var compra = { nome: nome, quantidade: quantidade, valor: valor, produto : produto };
+    var erros = validaCompra(compra);
+    if (erros.length > 0) {
+        
+        exibeMensagensErro(erros);
+        return; 
+    }
+
     total = calculaTotal(quantidade, valor)
+    
 
     tabela = document.querySelector(".tabela")
     linha = document.createElement("tr")
@@ -171,5 +181,43 @@ botaoAdicionar.addEventListener("click", function(event){
     linha.appendChild(coluna_3)
     linha.appendChild(coluna_4)
     linha.appendChild(coluna_5)
+
+    //Limpa a UL de erros
+    document.querySelector("#mensagens-erro").innerHTML="";
 });
+
+ function validaCompra(compra){
+     var erros = []
+
+    if(compra.nome==""){
+        erros.push("Insira um nome válido!")
+    }
+    if(isNaN(compra.quantidade)){
+        erros.push("Quantidade inválida!")
+    }
+    if(isNaN(compra.valor)){
+        erros.push("Insira um valor!")
+    }
+    if(compra.produto =="Selecione"){
+        erros.push("Selecione um produto!")
+    }
+
+    return erros;
+}
+
+//Função para exibir os erros de preenchimento do formulário
+function exibeMensagensErro(erros){
+    var ul = document.querySelector("#mensagens-erro");
+
+    //Limpa a UL para exibir os erros
+    ul.innerHTML="";
+  
+
+    erros.forEach(function(msg){
+        var li = document.createElement("li");
+        li.textContent = msg;
+        ul.appendChild(li);
+    })
+
+}
 

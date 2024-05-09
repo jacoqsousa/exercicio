@@ -51,6 +51,8 @@
         <hr>
         <div class="tbl">
             <form name="FmrContato" method="get" target="_blank">
+                <!--Exibe os erros de validação do formulário-->
+                <ul id="mensagens-erro"></ul>
                     <div class="grupo">
                         <label for="nomecliente">* Nome:</label>
                         <input type="text" id="nomecliente" name="" class="input-padrao" required placeholder="Digite o nome do(a) cliente">
@@ -76,6 +78,7 @@
         </div>    
         <input type="submit" value="Adicionar" class="adicionar-encomenda"> 
         <script src="test.js"></script>
+        <script src="removerEncomenda.js"></script>
     </body>
     <footer>
 

@@ -82,3 +82,10 @@ hr{
     color: white;
     width: 90%;
 }
+#mensagens-erro{
+    color: red;
+}
+.fadeOut{
+    opacity: 0;
+    transition: 1s;
+}
