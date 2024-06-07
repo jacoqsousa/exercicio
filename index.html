@@ -1,86 +1,89 @@
-<hmtl>
-    <meta charset="UTF-8">    
-    <head>
-        <link href="style.css" rel="stylesheet">
-        <link href="market.ico" rel="shortcut icon">
-        <title>Market</title>
-    </head>
-    <body>
-        <header>
-            <div class="logo_caixa">
-                <!--Logo que irá ficar na aba de navegação web-->
-                <img src="logo.png" title="Market" class="logo">
-            </div>
-        </header>
-        <h2 class="title">Lista de Compras</h2>
-        <table class="tabela">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="style.css" rel="stylesheet">
+    <link href="control.jpg" rel="shortcut icon">
+    <title>Market</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo_caixa">
+            <!-- Logo that will be in the web navigation tab -->
+            <img src="games.jpg" title="Market" class="logo">
+        </div>
+    </header>
+    <main>
+        <h2 class="title">Games for Fun</h2>
+        <label for="filtrar-tabela">Filtrar</label>
+        <input type="text" name="filtro" id="filtrar-tabela" class="input" placeholder="Digite o nome do jogo"/>
+        <table id="tabela" class="tabela">
             <thead>
-                <tr>
+                <tr class="colunas">
                     <th class="nome">Nome</th>
-                    <th class="produto">Produto</th>
-                    <th class="quantidade">Quantidade</th>
-                    <th class="valor">Valor Unitario</th>
-                    <th class="total">Total</th>
+                    <th class="metacritic">Metacritic</th>
+                    <th class="playtime">Playtime</th>
+                    <th class="platforms">Lançamento</th>
                 </tr>
             </thead>
-            <tbody id="tbody">
-                <tr class="cliente">
-                    <td class="info-nome">Jhonatan</td>
-                    <td class="info-produto">Video-game PS4</td>
-                    <td class="info-qtd">10</td>
-                    <td class="info-valor">1000</td>
-                    <td class="info-total">-</td>
+            <tbody id="tabela-encomendas">
+                <tr class="usuario">
+                    <td class="info-nome">Batman</td>
+                    <td class="info-metacritic">86</td>
+                    <td class="info-playtime">69</td>
+                    <td class="info-platforms">2000-12-12</td>
                 </tr>
-                <tr class="cliente">
-                    <td class="info-nome">Bhartolomeu</td>
-                    <td class="info-produto">Computador</td>
-                    <td class="info-qtd">20</td>
-                    <td class="info-valor">100</td>
-                    <td class="info-total">-</td>
+                <tr class="usuario">
+                    <td class="info-nome">CSGO 2</td>
+                    <td class="info-metacritic">96</td>
+                    <td class="info-playtime">79</td>
+                    <td class="info-platforms">2020-02-19</td>
                 </tr>
-                <tr class="cliente">
-                    <td class="info-nome">Danilo</td>
-                    <td class="info-produto">Copo Americano</td>
-                    <td class="info-qtd">10</td>
-                    <td class="info-valor">10</td>
-                    <td class="info-total">-</td>
-                </tr>   
+                <tr class="usuario">
+                    <td class="info-nome">Simpsons</td>
+                    <td class="info-metacritic">76</td>
+                    <td class="info-playtime">90</td>
+                    <td class="info-platforms">2015-06-14</td>
+                </tr>
+                <tr class="usuario">
+                    <td class="info-nome">Valorant</td>
+                    <td class="info-metacritic">96</td>
+                    <td class="info-playtime">99</td>
+                    <td class="info-platforms">2019-10-11</td>
+                </tr>
             </tbody>
         </table>
-        <h2 class="encomenda">Adicionar nova encomenda</h2>
+        <button id="buscar-encomendas" class="filtrar-encomenda">Buscar Jogos</button>
+        <h1 class="encomenda">Adicionar novo jogo</h1>
         <hr>
         <div class="tbl">
             <form name="FmrContato" method="get" target="_blank">
-                <!--Exibe os erros de validação do formulário-->
+                <!-- Display validation errors -->
                 <ul id="mensagens-erro"></ul>
-                    <div class="grupo">
-                        <label for="nomecliente">* Nome:</label>
-                        <input type="text" id="nomecliente" name="" class="input-padrao" required placeholder="Digite o nome do(a) cliente">
-                    </div>
-                    <div class="grupo">
-                        <label for="quanti">* Qtde:</label>
-                        <input type="text" id="quanti" name="" class="input-padrao" required placeholder="Digite a quantidade encomendada">
-                    </div>
-                    <div class="grupo">
-                        <label for="prodct">* Produto:</label>  
-                        <select class="input-padrao" id="produtos">
-                            <option>Selecione</option>
-                            <option value="Video-game PS4">Video-game PS4</option>
-                            <option value="Computador">Computador</option>
-                            <option value="Copo Americano">Copo Americano</option>
-                        </select>
-                    </div>
-                    <div class="grupo">
-                        <label for="Vunitario">* R$ Unitário:</label>
-                        <input type="text" id="Vunitario" name="" class="input-padrao" required placeholder="Digite o valor unitário do produto">
-                    </div>
+                <div class="grupo">
+                    <label for="name">* Nome:</label>
+                    <input type="text" id="name" name="" class="input-padrao" required placeholder="Digite o nome do jogo">
+                </div>
+                <div class="grupo">
+                    <label for="metacritic">* Metacritic:</label>
+                    <input type="text" id="metacritic" name="" class="input-padrao" required placeholder="Digite sua avaliação [0 - 100]">
+                </div>
+                <div class="grupo">
+                    <label for="playtime">* Playtime:</label>
+                    <input type="text" id="playtime" name="" class="input-padrao" required placeholder="Digite o playtime [0 -100]">
+                </div>
+                <div class="grupo">
+                    <label for="released">* Released:</label>
+                    <input type="text" id="released" name="" class="input-padrao" required placeholder="Digite a data de lançamento [xxxx-xx-xx]">
+                </div>
+                
             </form>
-        </div>    
-        <input type="submit" value="Adicionar" class="adicionar-encomenda"> 
-        <script src="test.js"></script>
-        <script src="removerEncomenda.js"></script>
-    </body>
-    <footer>
-
-    </footer>
-</hmtl>    
+            <input type="submit" value="Adicionar" class="adicionar-encomenda">
+        </div>
+    </main>
+    <script src="test.js"></script>
+    <script src="removerEncomenda.js"></script>
+    <script src="buscar-encomendas.js"></script>
+    <script src="filtrar.js"></script>
+</body>
+</html>

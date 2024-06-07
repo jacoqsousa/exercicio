@@ -93,131 +93,92 @@ function calculaTotal(qtde,unitario){
 }
 */
 
-var items = document.querySelectorAll(".cliente");
-
-items.forEach(function(item) {
-    var qtdeElement = item.querySelector(".info-qtd");
-    var qtde = parseInt(qtdeElement.textContent);
-    var unitario = parseFloat(item.querySelector(".info-valor").textContent);
-
-    
-    if (!validarQuantidade(qtdeElement)) {
-        return; 
-    }
-
-
-    var total = calculaTotal(qtde, unitario);
-    item.querySelector(".info-total").textContent = formataEmValorMonetario(total);
-    item.querySelector(".info-valor").textContent = formataEmValorMonetario(unitario);
-    qtdeElement.textContent = qtde; 
-});
-
-function calculaTotal(qtde, unitario) {
-    var total = qtde * unitario;
-    return total;
-}
-
-function formataEmValorMonetario(valor) {
-    if (!isNaN(valor)) {
-        var valorMonetario = valor.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
-        return valorMonetario;
-    } else {
-        return "Valor Inválido!";
-    }
-}
-
-function validarQuantidade(qtdeElement) {
-    var qtde = parseInt(qtdeElement.textContent);
-
-    if (qtde < 1 || isNaN(qtde)) {
-        qtdeElement.textContent = "QTDE INVÁLIDA!";
-        qtdeElement.style.color = 'red';
-        return false;
-    }
-
-    // Quantity is valid
-    return true;
-}
-
 var botaoAdicionar = document.querySelector(".adicionar-encomenda");
-
 
 botaoAdicionar.addEventListener("click", function(event){
     event.preventDefault();
 
-    nome = document.getElementById("nomecliente").value
-    produto = document.getElementById("produtos").value
-    quantidade = parseFloat(document.getElementById("quanti").value)
-    valor = parseFloat(document.getElementById("Vunitario").value)
+    let name = document.getElementById("name").value;
+    let metacritic = parseFloat(document.getElementById("metacritic").value);
+    let playtime = parseFloat(document.getElementById("playtime").value);
+    let released = document.getElementById("released").value;
 
-    var compra = { nome: nome, quantidade: quantidade, valor: valor, produto : produto };
+    var compra = { name: name, metacritic: metacritic, playtime: playtime, released: released };
     var erros = validaCompra(compra);
     if (erros.length > 0) {
-        
         exibeMensagensErro(erros);
-        return; 
+        return;
     }
 
-    total = calculaTotal(quantidade, valor)
-    
+    // Limpa a UL de erros
+    document.querySelector("#mensagens-erro").innerHTML = "";
 
-    tabela = document.querySelector(".tabela")
-    linha = document.createElement("tr")
-    coluna_1 = document.createElement("td")
-    coluna_2 = document.createElement("td")
-    coluna_3 = document.createElement("td")
-    coluna_4 = document.createElement("td")
-    coluna_5 = document.createElement("td")
-
-    coluna_1.textContent = nome
-    coluna_2.textContent = produto
-    coluna_3.textContent = quantidade
-    coluna_4.textContent = formataEmValorMonetario(valor)
-    coluna_5.textContent = formataEmValorMonetario(total)
-
-    tabela.appendChild(linha)
-    linha.appendChild(coluna_1)
-    linha.appendChild(coluna_2)
-    linha.appendChild(coluna_3)
-    linha.appendChild(coluna_4)
-    linha.appendChild(coluna_5)
-
-    //Limpa a UL de erros
-    document.querySelector("#mensagens-erro").innerHTML="";
+    // Adiciona a nova encomenda na tabela
+    var tabela = document.querySelector("#tabela-encomendas");
+    var novaEncomendaTR = montaTR(compra); 
+    tabela.appendChild(novaEncomendaTR);
 });
 
- function validaCompra(compra){
-     var erros = []
+// Função para montar a linha de encomenda na tabela
+function montaTR(encomenda) {
+    // Cria os elementos da linha da tabela
+    var encomendaTR = document.createElement("tr");
 
-    if(compra.nome==""){
-        erros.push("Insira um nome válido!")
+    // Adiciona uma classe à nova linha
+    encomendaTR.classList.add("nova-encomenda");
+
+    var nomeTD = document.createElement("td");
+    nomeTD.textContent = encomenda.name;
+
+    var metacriticTD = document.createElement("td");
+    metacriticTD.textContent = encomenda.metacritic;
+
+    var playtimeTD = document.createElement("td");
+    playtimeTD.textContent = encomenda.playtime;
+
+    var releasedTD = document.createElement("td");
+    releasedTD.textContent = encomenda.released;
+
+
+    // Adiciona os dados na linha da tabela
+    encomendaTR.appendChild(nomeTD);
+    encomendaTR.appendChild(metacriticTD);
+    encomendaTR.appendChild(playtimeTD);
+    encomendaTR.appendChild(releasedTD); 
+
+    return encomendaTR;
+}
+
+// Função para validar os dados da compra
+function validaCompra(compra){
+    var erros = [];
+
+    if (compra.name.trim() === "") {
+        erros.push("Insira um nome válido!");
     }
-    if(isNaN(compra.quantidade)){
-        erros.push("Quantidade inválida!")
+    if (isNaN(compra.playtime) || compra.playtime <= 0) {
+        erros.push("Playtime inválido!");
     }
-    if(isNaN(compra.valor)){
-        erros.push("Insira um valor!")
+    if (isNaN(compra.metacritic) || compra.metacritic <= 0 || compra.metacritic > 100) {
+        erros.push("Avaliação inválida!");
     }
-    if(compra.produto =="Selecione"){
-        erros.push("Selecione um produto!")
+    if (compra.released.trim() === "") {
+        erros.push("Data inválida!");
     }
 
     return erros;
 }
 
-//Função para exibir os erros de preenchimento do formulário
+// Função para exibir mensagens de erro
 function exibeMensagensErro(erros){
     var ul = document.querySelector("#mensagens-erro");
 
-    //Limpa a UL para exibir os erros
-    ul.innerHTML="";
-  
+    // Limpa a UL para exibir os erros
+    ul.innerHTML = "";
 
     erros.forEach(function(msg){
         var li = document.createElement("li");
         li.textContent = msg;
         ul.appendChild(li);
-    })
-
+    });
 }
-
