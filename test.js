@@ -156,7 +156,7 @@ function validaCompra(compra){
     if (compra.name.trim() === "") {
         erros.push("Insira um nome válido!");
     }
-    if (isNaN(compra.playtime) || compra.playtime <= 0) {
+    if (isNaN(compra.playtime) || compra.playtime <= 0 || compra.metacritic > 100) {
         erros.push("Playtime inválido!");
     }
     if (isNaN(compra.metacritic) || compra.metacritic <= 0 || compra.metacritic > 100) {
